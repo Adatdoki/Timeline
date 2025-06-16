@@ -1,17 +1,17 @@
 {
   "name": "idovonal-netlify",
   "version": "1.0.0",
+  "description": "Történelmi idővonal prototípus",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "marked": "^12.0.2"
   },
   "devDependencies": {
-    "vite": "^4.0.0",
-    "@vitejs/plugin-react": "^4.0.0"
+    "@vitejs/plugin-react": "^4.0.0",
+    "vite": "^4.5.0"
   }
 }
