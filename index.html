@@ -1,12 +1,50 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="hu">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Idővonal Prototípus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Idővonal prototípus</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/main.jsx"></script>
+    <div class="timeline-container">
+      <div class="categories">
+        <div class="category">Történelem</div>
+        <div class="category">Kultúra</div>
+        <div class="category">Gazdaság</div>
+        <div class="category">Diplomácia</div>
+      </div>
+      <div class="timeline">
+        <div class="event">
+          <div class="label">1000. december 25.</div>
+          <div class="title">Államalapítás</div>
+          <div class="summary">Szent István királlyá koronáztatása és az államalapítás kezdete.</div>
+          <button onclick="showDetail('detail1')">Részletesen</button>
+          <div class="detail" id="detail1">
+            Szent István 1000 körül királlyá koronáztatta magát és megalapította a keresztény magyar államot.
+            <button onclick="hideDetail('detail1')">Bezár</button>
+          </div>
+        </div>
+        <div class="event">
+          <div class="label">1241 tavasza</div>
+          <div class="title">Tatárjárás</div>
+          <div class="summary">A tatárok elözönlik az országot, súlyos pusztítással.</div>
+          <button onclick="showDetail('detail2')">Részletesen</button>
+          <div class="detail" id="detail2">
+            1241-ben a tatár seregek feldúlták Magyarország nagy részét, komoly pusztítást okozva.
+            <button onclick="hideDetail('detail2')">Bezár</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function showDetail(id) {
+        document.getElementById(id).style.display = 'block';
+      }
+      function hideDetail(id) {
+        document.getElementById(id).style.display = 'none';
+      }
+    </script>
   </body>
 </html>
