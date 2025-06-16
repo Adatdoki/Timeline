@@ -1,0 +1,83 @@
+[
+  {
+    "időszak": "1000–1099",
+    "év": 1000,
+    "kategória": "történelem",
+    "címsor": "Államalapítás",
+    "rövid_magyarázat": "1000. Dec 25. – Szent István megalapította...",
+    "részletes_szöveg": "...királlyá koronáztatása...",
+    "szín": "#c0392b"
+  },
+  {
+    "időszak": "1200–1299",
+    "év": 1241,
+    "kategória": "történelem",
+    "címsor": "Tatárjárás",
+    "rövid_magyarázat": "1241 tavasza – Tatárok elözönlik az országot...",
+    "részletes_szöveg": "1241-ben a tatár seregek feldúlták",
+    "szín": "#c0392b"
+  },
+  {
+    "időszak": "1100–1199",
+    "év": 1193,
+    "kategória": "kultúra",
+    "címsor": "Halotti beszéd",
+    "rövid_magyarázat": "1192–1195 körül – Első fennmaradt magyar nyelvű szöveg",
+    "részletes_szöveg": "...egy temetésen elhangzó ima...",
+    "szín": "#2980b9"
+  },
+  {
+    "időszak": "1200–1299",
+    "év": 1222,
+    "kategória": "történelem",
+    "címsor": "Aranybulla kiadása",
+    "rövid_magyarázat": "1222. April 24. – II. András kiadja az Aranybullát a nemesség jogainak biztosítására.",
+    "részletes_szöveg": "A magyar nemesség jogainak alapját lefektető Aranybullát 1222-ben adta ki II. András, válaszul a belső elégedetlenségre és a főurak követeléseire. A dokumentum megerősítette a nemesek adómentességét és az ellenállási jogot.",
+    "szín": "#c0392b"
+  },
+  {
+    "időszak": "1200–1299",
+    "év": 1242,
+    "kategória": "történelem",
+    "címsor": "IV. Béla újjáépítése",
+    "rövid_magyarázat": "1242 nyara – A tatárjárás után IV. Béla országépítésbe kezdett.",
+    "részletes_szöveg": "A tatárjárás után IV. Béla a \"második honalapítóként\" vált ismertté, mivel városokat erősített meg, várakat építtetett, és támogatta a telepeseket. Az újjáépítés jelentősen hozzájárult Magyarország fejlődéséhez.",
+    "szín": "#c0392b"
+  },
+  {
+    "időszak": "1200–1299",
+    "év": 1282,
+    "kategória": "kultúra",
+    "címsor": "Képes Krónika keletkezése",
+    "rövid_magyarázat": "1282 körül – A magyar történelmet képekkel illusztráló kézirat készül.",
+    "részletes_szöveg": "A Képes Krónika az egyik legértékesebb középkori magyar krónika, amely nemcsak szövegesen, hanem gazdag miniatúrákkal mutatja be a magyar történelem eseményeit. Vélhetően az 1280-as években készült.",
+    "szín": "#2980b9"
+  },
+  {
+    "időszak": "1300–1399",
+    "év": 1308,
+    "kategória": "történelem",
+    "címsor": "I. Károly uralkodása",
+    "rövid_magyarázat": "1308. November 27. – Megszilárdítja a királyi hatalmat és új gazdaságpolitikát vezet be.",
+    "részletes_szöveg": "I. Károly (Róbert Károly) 1308-ban lépett trónra. Uralkodása során új pénzreformot vezetett be, támogatta a bányászatot, és megalapozta az Anjou-királyok hatalmát. Az ország gazdaságilag megerősödött.",
+    "szín": "#c0392b"
+  },
+  {
+    "időszak": "1300–1399",
+    "év": 1351,
+    "kategória": "történelem",
+    "címsor": "Nagy Lajos törvényei",
+    "rövid_magyarázat": "1351. October 11. – Megerősíti az Aranybullát, bevezeti az ősiség törvényét.",
+    "részletes_szöveg": "I. (Nagy) Lajos 1351-ben országgyűlést hívott össze, ahol megerősítette az Aranybullát és bevezette az ősiség törvényét, amely szerint a nemesi birtok visszaszállt a királyra, ha nem volt örökös.",
+    "szín": "#c0392b"
+  },
+  {
+    "időszak": "1300–1399",
+    "év": 1367,
+    "kategória": "oktatás",
+    "címsor": "Magyar egyetem Pécsett",
+    "rövid_magyarázat": "1367. September 1. – I. Nagy Lajos megalapítja az első magyar egyetemet Pécsett.",
+    "részletes_szöveg": "1367-ben I. Nagy Lajos kérésére V. Orbán pápa engedélyével létrejött az első magyar egyetem Pécsett. A jogi és bölcseleti karokkal működő intézmény a középkori tudás közvetítője lett Magyarországon.",
+    "szín": "#8e44ad"
+  }
+]

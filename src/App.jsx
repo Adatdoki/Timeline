@@ -2,134 +2,38 @@ import { useState, useRef, useEffect } from 'react'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 import './App.css'
 
-// Történelmi események adatai
-const timelineData = [
-  {
-    ev: 1000,
-    cim: 'Államalapítás',
-    datum: '1000. december 25.',
-    kategoria: 'történelem',
-    rovid: 'Szent István királlyá koronáztatása és a keresztény magyar állam megalapítása.',
-    reszletes: `# Államalapítás
-
-**1000. december 25.**
-
-Szent István 1000 körül királlyá koronáztatta magát, ezzel megalapítva a keresztény magyar államot. Ez a momentum nemcsak a magyar történelem, hanem egész Közép-Európa szempontjából is kiemelkedő jelentőségű volt.
-
-## A koronázás jelentősége
-
-A koronázás nem csupán szimbolikus aktus volt, hanem a magyar állam nemzetközi elismerését is jelentette. István ezzel egyenrangú partnerré vált a nyugat-európai keresztény uralkodókkal.
-
-## Államszervezés
-
-István király modern közigazgatási rendszert épített ki:
-- Megyerendszer kialakítása
-- Keresztény egyház megszervezése
-- Törvények kodifikálása
-- Gazdasági reformok bevezetése
-
-## Örökség
-
-Az államalapítás hagyománya máig meghatározza a magyar nemzeti identitást. Szent István alakja a keresztény királyság eszményképévé vált.`
-  },
-  {
-    ev: 1241,
-    cim: 'Tatárjárás',
-    datum: '1241-1242',
-    kategoria: 'történelem',
-    rovid: 'A mongol seregek pusztító hadjárata Magyarországon.',
-    reszletes: `# Tatárjárás
-
-**1241-1242**
-
-A mongol-tatár seregek 1241 tavaszán törtek be Magyarországra, súlyos pusztítást végezve az országban. Ez volt az egyik legsúlyosabb katasztrófa a magyar történelemben.
-
-## A támadás menete
-
-Batu kán vezetésével a mongol seregek három irányból támadtak:
-- Északi hadoszlop: Lengyelországon át
-- Középső hadoszlop: Vereckei-szoroson át
-- Déli hadoszlop: Oláhországon át
-
-## Mohi csata
-
-1241. április 11-én a mohii csatában a magyar sereg súlyos vereséget szenvedett. II. Béla király menekülni kényszerült.
-
-## Következmények
-
-- A lakosság harmada-fele elpusztult
-- Számos város és település megsemmisült
-- A gazdasági élet összeomlott
-- Kényszerű újjáépítés és megerősítés`
-  },
-  {
-    ev: 1456,
-    cim: 'Nándorfehérvári diadal',
-    datum: '1456. július 22.',
-    kategoria: 'történelem',
-    rovid: 'Hunyadi János és Kapisztrán János győzelme a török sereg felett.',
-    reszletes: `# Nándorfehérvári diadal
-
-**1456. július 22.**
-
-Hunyadi János és Kapisztrán János vezetésével a keresztény seregek döntő győzelmet arattak II. Mehmed szultán török serege felett Nándorfehérvárnál (ma Belgrád).
-
-## A csata előzményei
-
-II. Mehmed szultán 1453-ban elfoglalta Konstantinápolyt, majd Magyarország felé fordította figyelmét. Nándorfehérvár stratégiai fontosságú erőd volt a Duna és Száva találkozásánál.
-
-## A győzelem
-
-A keresztény sereg váratlan támadása meglepte a török ostromlókat. A győzelem:
-- Megállította a török előrenyomulást
-- 70 évre biztosította Magyarország függetlenségét
-- Európa-szerte ünnepelték
-
-## Örökség
-
-A győzelem emlékére a pápa elrendelte a déli harangszót, amely máig szól világszerte.`
-  },
-  {
-    ev: 1526,
-    cim: 'Mohácsi csata',
-    datum: '1526. augusztus 29.',
-    kategoria: 'történelem',
-    rovid: 'A magyar sereg pusztító veresége a török hadak ellen.',
-    reszletes: `# Mohácsi csata
-
-**1526. augusztus 29.**
-
-A mohácsi csatában II. Lajos magyar király serege súlyos vereséget szenvedett I. Szulejmán szultán török hadaitól. Ez a csata véget vetett a középkori Magyar Királyságnak.
-
-## A csata
-
-A magyar sereg létszámbeli hátrányban volt:
-- Magyar sereg: kb. 25-30 ezer fő
-- Török sereg: kb. 100 ezer fő
-
-## Következmények
-
-- II. Lajos király elesett a csatában
-- A magyar állam három részre szakadt
-- Kezdetét vette a 150 éves török hódoltság
-- Európa keresztény bástyája megrendült
-
-## Történelmi jelentőség
-
-A mohácsi vereség a magyar történelem egyik legmeghatározóbb eseménye, amely évszázadokra megváltoztatta az ország sorsát.`
-  }
-];
-
-const kategoriak = [...new Set(timelineData.map(e => e.kategoria))];
-
 export default function App() {
-  const [aktivKategoriak, setAktivKategoriak] = useState(new Set(kategoriak));
+  const [timelineData, setTimelineData] = useState([]);
+  const [aktivKategoriak, setAktivKategoriak] = useState(new Set());
   const [aktivReszletes, setAktivReszletes] = useState(null);
   const [hoveredEvent, setHoveredEvent] = useState(null);
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
+  const [loading, setLoading] = useState(true);
   const timelineRef = useRef(null);
 
-  const szurtEsemenyek = timelineData.filter(event => aktivKategoriak.has(event.kategoria));
+  // JSON adatok betöltése
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const response = await fetch('/idovonal_kesz.json');
+        const data = await response.json();
+        setTimelineData(data);
+        
+        // Kategóriák automatikus beállítása
+        const kategoriak = [...new Set(data.map(e => e.kategória))];
+        setAktivKategoriak(new Set(kategoriak));
+        setLoading(false);
+      } catch (error) {
+        console.error('Hiba az adatok betöltésekor:', error);
+        setLoading(false);
+      }
+    };
+
+    loadData();
+  }, []);
+
+  const kategoriak = [...new Set(timelineData.map(e => e.kategória))];
+  const szurtEsemenyek = timelineData.filter(event => aktivKategoriak.has(event.kategória));
 
   const toggleKategoria = (kat) => {
     const uj = new Set(aktivKategoriak);
@@ -151,14 +55,21 @@ export default function App() {
   };
 
   const handleEventClick = (event) => {
-    console.log('Event clicked:', event.cim);
+    console.log('Event clicked:', event.címsor);
     setAktivReszletes(event);
   };
 
-  // Évek generálása 1000-től 1600-ig
+  // Évek generálása a legkorábbi és legkésőbbi év alapján
   const evek = [];
-  for (let ev = 1000; ev <= 1600; ev += 100) {
-    evek.push(ev);
+  if (timelineData.length > 0) {
+    const minEv = Math.min(...timelineData.map(e => e.év));
+    const maxEv = Math.max(...timelineData.map(e => e.év));
+    const startYear = Math.floor(minEv / 100) * 100;
+    const endYear = Math.ceil(maxEv / 100) * 100;
+    
+    for (let ev = startYear; ev <= endYear; ev += 100) {
+      evek.push(ev);
+    }
   }
 
   const scrollLeft = () => {
@@ -168,6 +79,26 @@ export default function App() {
   const scrollRight = () => {
     timelineRef.current?.scrollBy({ left: 300, behavior: 'smooth' });
   };
+
+  // Kategória színek
+  const kategoriaColors = {
+    'történelem': '#c0392b',
+    'kultúra': '#2980b9', 
+    'oktatás': '#8e44ad',
+    'gazdaság': '#27ae60',
+    'vallás': '#f39c12'
+  };
+
+  if (loading) {
+    return (
+      <div className="h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-slate-600">Adatok betöltése...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex flex-col">
@@ -191,14 +122,21 @@ export default function App() {
                   className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
                 />
                 {aktivKategoriak.has(k) && (
-                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                    <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                  <div 
+                    className="absolute inset-0 flex items-center justify-center pointer-events-none"
+                    style={{ backgroundColor: kategoriaColors[k] || '#3b82f6' }}
+                  >
+                    <div className="w-2 h-2 bg-white rounded-full"></div>
                   </div>
                 )}
               </div>
               <span className="text-slate-700 capitalize font-medium group-hover:text-blue-600 transition-colors">
                 {k}
               </span>
+              <div 
+                className="w-3 h-3 rounded-full ml-auto"
+                style={{ backgroundColor: kategoriaColors[k] || '#3b82f6' }}
+              ></div>
             </label>
           ))}
           
@@ -238,7 +176,7 @@ export default function App() {
               ref={timelineRef}
               className="h-full overflow-x-auto overflow-y-hidden scrollbar-thin scrollbar-thumb-slate-300 scrollbar-track-slate-100"
             >
-              <div className="relative h-full" style={{ width: '4000px' }}>
+              <div className="relative h-full" style={{ width: `${evek.length * 600}px` }}>
                 {/* Évszám csík */}
                 <div className="absolute bottom-0 left-0 right-0 h-20 bg-white border-t border-slate-200">
                   <div className="relative h-full">
@@ -247,7 +185,7 @@ export default function App() {
                       <div
                         key={ev}
                         className="absolute bottom-0 flex flex-col items-center"
-                        style={{ left: `${(ev - 1000) * 6 + 100}px` }}
+                        style={{ left: `${(ev - evek[0]) * 6 + 100}px` }}
                       >
                         <div className="w-px h-6 bg-slate-300"></div>
                         <span className="text-sm font-medium text-slate-600 mt-2">{ev}</span>
@@ -262,20 +200,33 @@ export default function App() {
                 {/* Események */}
                 {szurtEsemenyek.map(event => (
                   <div
-                    key={event.ev}
+                    key={`${event.év}-${event.címsor}`}
                     className="absolute bottom-20 transform -translate-x-1/2 cursor-pointer group"
-                    style={{ left: `${(event.ev - 1000) * 6 + 100}px` }}
+                    style={{ left: `${(event.év - evek[0]) * 6 + 100}px` }}
                     onMouseEnter={(e) => handleMouseEnter(event, e)}
                     onMouseLeave={handleMouseLeave}
                     onClick={() => handleEventClick(event)}
                   >
+                    {/* Vonal az idősávhoz */}
+                    <div 
+                      className="absolute top-full w-px bg-slate-400 group-hover:bg-slate-600 transition-colors"
+                      style={{ 
+                        height: '60px',
+                        left: '50%',
+                        transform: 'translateX(-50%)'
+                      }}
+                    ></div>
+                    
                     {/* Esemény pont */}
-                    <div className="w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-lg group-hover:bg-blue-700 group-hover:scale-125 transition-all duration-200 mb-2"></div>
+                    <div 
+                      className="w-4 h-4 rounded-full border-4 border-white shadow-lg group-hover:scale-125 transition-all duration-200 mb-2 mx-auto"
+                      style={{ backgroundColor: event.szín || kategoriaColors[event.kategória] || '#3b82f6' }}
+                    ></div>
                     
                     {/* Esemény címke */}
-                    <div className="bg-white rounded-lg shadow-md border border-slate-200 p-3 min-w-[200px] max-w-[250px] group-hover:shadow-lg transition-shadow">
-                      <h3 className="font-semibold text-slate-800 text-sm mb-1">{event.cim}</h3>
-                      <p className="text-xs text-slate-600">{event.datum}</p>
+                    <div className="bg-white rounded-lg shadow-md border border-slate-200 p-3 min-w-[200px] max-w-[250px] group-hover:shadow-lg transition-shadow text-center">
+                      <h3 className="font-semibold text-slate-800 text-sm mb-1">{event.címsor}</h3>
+                      <p className="text-xs text-slate-600">{event.év}</p>
                     </div>
                   </div>
                 ))}
@@ -294,14 +245,16 @@ export default function App() {
             top: tooltipPosition.y,
           }}
         >
-          <div className="text-sm font-semibold text-slate-800 mb-1">
-            {hoveredEvent.datum}
-          </div>
-          <div className="text-sm text-slate-600 leading-relaxed">
-            {hoveredEvent.rovid}
-          </div>
-          <div className="text-xs text-blue-600 mt-2 font-medium">
-            Kattints a részletekért →
+          <div className="text-center">
+            <div className="text-sm font-semibold text-slate-800 mb-1">
+              {hoveredEvent.év}
+            </div>
+            <div className="text-sm text-slate-600 leading-relaxed">
+              {hoveredEvent.rövid_magyarázat}
+            </div>
+            <div className="text-xs text-blue-600 mt-2 font-medium">
+              Kattints a részletekért →
+            </div>
           </div>
           
           {/* Buborék nyíl */}
@@ -324,23 +277,18 @@ export default function App() {
             
             <div className="p-8">
               <div className="prose prose-slate max-w-none">
-                <div dangerouslySetInnerHTML={{ 
-                  __html: aktivReszletes.reszletes.split('\n').map(line => {
-                    if (line.startsWith('# ')) {
-                      return `<h1 class="text-3xl font-bold text-slate-800 mb-4">${line.substring(2)}</h1>`;
-                    } else if (line.startsWith('## ')) {
-                      return `<h2 class="text-xl font-semibold text-slate-700 mt-6 mb-3">${line.substring(3)}</h2>`;
-                    } else if (line.startsWith('**') && line.endsWith('**')) {
-                      return `<p class="text-lg font-medium text-blue-600 mb-4">${line.substring(2, line.length - 2)}</p>`;
-                    } else if (line.startsWith('- ')) {
-                      return `<li class="text-slate-600 mb-1">${line.substring(2)}</li>`;
-                    } else if (line.trim() === '') {
-                      return '<br>';
-                    } else {
-                      return `<p class="text-slate-700 mb-4 leading-relaxed">${line}</p>`;
-                    }
-                  }).join('')
-                }} />
+                <h1 className="text-3xl font-bold text-slate-800 mb-2">{aktivReszletes.címsor}</h1>
+                <p className="text-lg font-medium text-blue-600 mb-4">{aktivReszletes.év}</p>
+                <div className="text-slate-700 leading-relaxed">
+                  <p className="mb-4">{aktivReszletes.rövid_magyarázat}</p>
+                  <p>{aktivReszletes.részletes_szöveg}</p>
+                </div>
+                <div className="mt-6 pt-4 border-t border-slate-200">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium text-white"
+                        style={{ backgroundColor: aktivReszletes.szín || kategoriaColors[aktivReszletes.kategória] || '#3b82f6' }}>
+                    {aktivReszletes.kategória}
+                  </span>
+                </div>
               </div>
             </div>
           </div>

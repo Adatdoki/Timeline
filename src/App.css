@@ -178,3 +178,29 @@
   }
 }
 
+/* Esemény buborék középre igazítás */
+.event-bubble {
+  text-align: center;
+}
+
+/* Vonal az idősávhoz animáció */
+.timeline-connector {
+  transition: all 0.2s ease-in-out;
+}
+
+.group:hover .timeline-connector {
+  background-color: rgb(71 85 105);
+  width: 2px;
+}
+
+/* Loading spinner */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
