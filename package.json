@@ -1,7 +1,6 @@
 {
-  "name": "idovonal-netlify",
+  "name": "idovonal-vite-prototipus",
   "version": "1.0.0",
-  "description": "Történelmi idővonal prototípus",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
