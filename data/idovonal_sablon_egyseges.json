@@ -7,27 +7,32 @@
     "rövid_magyarázat": "Szent István megalapította a keresztény magyar államot.",
     "részletes_szöveg": "Szent István 1000 körül királlyá koronáztatta magát...",
     "szín": "#c0392b"
-  }
+  },
   {
-  "category": "történelem",
-  "title": "II. (Vak) Béla uralkodása",
-  "date": "1131",
-  "summary": "II. Béla trónra kerülése és az aradi véres bosszú az ellenfelein.",
-  "details": "II. (Vak) Béla 1131-ben lépett trónra. A hatalom megszilárdítását követően híveivel brutális leszámolást hajtott végre Aradon, ahol ellenségeit lemészárolták. Vak Béla uralkodása alatt stabilizálódott a belpolitikai helyzet."
-}
-{
-  "category": "történelem",
-  "title": "III. Béla uralkodása",
-  "date": "1172–1196",
-  "summary": "III. Béla uralkodása alatt megerősödött a királyi hatalom, és bevezették a kancelláriát.",
-  "details": "III. Béla korszakában megindult a királyi kancellária működése, ami a későbbi közigazgatás alapjává vált. Uralkodása idején a Magyar Királyság Európa egyik legerősebb középhatalmává vált, köszönhetően a gazdasági fellendülésnek és a nyugati kapcsolatok erősítésének."
-}
-{
-  "category": "történelem",
-  "title": "Halotti beszéd és könyörgés",
-  "date": "1192–1195 körül",
-  "summary": "Az első fennmaradt magyar nyelvű szöveg, amely temetési beszédet és imát tartalmaz.",
-  "details": "A Halotti beszéd és könyörgés az egyik legkorábbi magyar nyelvű írásos emlék, amely egy temetésen elhangzó prédikáció és ima formájában maradt fenn. Nyelvészeti és kulturális szempontból kiemelkedő jelentőségű forrás."
-}
-
+    "időszak": "1100–1199",
+    "év": 1131,
+    "kategória": "történelem",
+    "címsor": "II. (Vak) Béla uralkodása",
+    "rövid_magyarázat": "II. Béla trónra kerülése és az aradi véres bosszú az ellenfelein.",
+    "részletes_szöveg": "II. (Vak) Béla 1131-ben lépett trónra. A hatalom megszilárdítását követően híveivel brutális leszámolást hajtott végre Aradon, ahol ellenségeit lemészárolták. Vak Béla uralkodása alatt stabilizálódott a belpolitikai helyzet.",
+    "szín": "#c0392b"
+  },
+  {
+    "időszak": "1100–1199",
+    "év": 1172,
+    "kategória": "történelem",
+    "címsor": "III. Béla uralkodása",
+    "rövid_magyarázat": "III. Béla uralkodása alatt megerősödött a királyi hatalom, és bevezették a kancelláriát.",
+    "részletes_szöveg": "III. Béla korszakában megindult a királyi kancellária működése, ami a későbbi közigazgatás alapjává vált. Uralkodása idején a Magyar Királyság Európa egyik legerősebb középhatalmává vált, köszönhetően a gazdasági fellendülésnek és a nyugati kapcsolatok erősítésének.",
+    "szín": "#c0392b"
+  },
+  {
+    "időszak": "1100–1199",
+    "év": 1192,
+    "kategória": "történelem",
+    "címsor": "Halotti beszéd és könyörgés",
+    "rövid_magyarázat": "Az első fennmaradt magyar nyelvű szöveg, amely temetési beszédet és imát tartalmaz.",
+    "részletes_szöveg": "A Halotti beszéd és könyörgés az egyik legkorábbi magyar nyelvű írásos emlék, amely egy temetésen elhangzó prédikáció és ima formájában maradt fenn. Nyelvészeti és kulturális szempontból kiemelkedő jelentőségű forrás.",
+    "szín": "#c0392b"
+  }
 ]
